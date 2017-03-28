@@ -1,5 +1,0 @@
-<?php 
-
-/**
- * APP CONFIG FILE
- */
