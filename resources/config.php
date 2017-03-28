@@ -1,0 +1,5 @@
+<?php 
+
+/**
+ * APP CONFIG FILE
+ */
