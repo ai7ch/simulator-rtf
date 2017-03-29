@@ -7,13 +7,14 @@
 </head>
 <body>
 	<div id="container" class="contaier">
-		<div class="row avis">
-		<h2>Avis :</h2>
+		<div class="row avis" style="border: 1px solid gray; margin: 10px 0; padding: 10px 5px;">
+			<h2>Avis :</h2>
 			<div class="col-md-12">
 				<h3>Information sur votre avis d'impôt 2016 taxes foncières</h3>
 				<input type="text" id="nom-ent" name="nom-ent" placeholder="Nom d'entreprise">
 				<input type="text" id="montant-a-payer" name="montant-a-payer" placeholder="Montant à payer">
 			</div>
+			<br>
 			<div class="col-md-12">
 				<h3>Détail du calcul des cotisations, propriétés Bâties :</h3>
 				<table cellpadding="0" cellspacing="0" border="0">
@@ -38,7 +39,7 @@
 						<td> <input type="text" id="annee-2-total" name="annee-2-total" class="" > </td>
 					</tr> -->
 					<tr>
-						<td>Taux 2016 <!-- $current_year (-) 1 --></td>
+						<td>Taux 2016 <!--  $current_year (-) 1 --></td>
 						<td> <input type="text" id="annee-1-com" name="annee-1-com" class="" > </td>
 						<td> <input type="text" id="annee-1-synd-com" name="annee-1-synd-com" class="" > </td>
 						<td> <input type="text" id="annee-1-inter-com" name="annee-1-inter-com" class="" > </td>
@@ -59,9 +60,9 @@
 					</tr>
 				</table>
 			</div>
-		</div>
-		<div class="row cerfa-666-rev">
-		<h2>Simulation de votre déclaration :</h2>
+		</div> <!-- .avis -->
+		<div class="row cerfa-666-rev" style="border: 1px solid gray; margin: 10px 0; padding: 10px 5px;">
+			<h2>Simulation de votre déclaration :</h2>
 			<div class="col-md-12">
 				<h3>Votre département :</h3>
 				<input type="text" id="u-dep" name="u-dep" placeholder="Votre département"> 
@@ -78,7 +79,7 @@
 				<input type="text" id="u-sec" name="u-sec" placeholder="Le Secteur"> <span>pdf</span>
 			</div>
 			<div class="col-md-12">
-				<h3>Occupation du local</h3>
+				<h3>Occupation du local :</h3>
 				<h4>Occupant(s) :</h4>
 				<table cellpadding="0" cellpadding="0" border="0">
 					<tr>
@@ -89,7 +90,7 @@
 					</tr>
 					<tr class="footer">
 						<td>
-							<a href="#add_new_row">Ajouter une entreprise</a>
+							<a href="#add_new_row">Ajouter un N° SIREN</a>
 						</td>
 					</tr>
 				</table>
@@ -115,7 +116,7 @@
 					</tr>
 					<tr class="footer">
 						<td>
-							<a href="#add_new_row">Ajouter un N° SIREN</a>
+							<a href="#add_new_row">Ajouter une surface</a>
 						</td>
 					</tr>
 				</table>
@@ -157,7 +158,18 @@
 			<div class="col-md-6">
 				<button>Lancer la simulation</button>
 			</div>
-		</div>
-	</div>
+		</div> <!-- .cerfa-666-rev -->
+	</div> <!--#container -->
+
+	<!-- SCRIPTS -->
+	<!-- lib -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+	<!-- local -->
+	<script>
+		$(function(){
+			console.log('hey Hi!')
+		})
+	</script>
 </body>
 </html>
