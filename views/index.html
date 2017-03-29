@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div id="container" class="contaier">
-		<div class="row avis" style="border: 1px solid gray; margin: 10px 0; padding: 10px 5px;">
+		<div class="row avis" style="border: 1px solid gray; margin: 20px 0 50px; padding: 20px 15px; background-color: #ededed;">
 			<h2>Avis :</h2>
 			<div class="col-md-12">
 				<h3>Information sur votre avis d'impôt 2016 taxes foncières</h3>
@@ -61,8 +61,8 @@
 				</table>
 			</div>
 		</div> <!-- .avis -->
-		<div class="row cerfa-666-rev" style="border: 1px solid gray; margin: 10px 0; padding: 10px 5px;">
-			<h2>Simulation de votre déclaration :</h2>
+		<div class="row cerfa-666-rev" style="border: 1px solid gray; margin: 20px 0 50px; padding: 20px 15px; background-color: #ededed;">
+			<h2>CERFA 6660-Rev :</h2>
 			<div class="col-md-12">
 				<h3>Votre département :</h3>
 				<input type="text" id="u-dep" name="u-dep" placeholder="Votre département"> 
@@ -82,12 +82,7 @@
 				<h3>Occupation du local :</h3>
 				<h4>Occupant(s) :</h4>
 				<table cellpadding="0" cellpadding="0" border="0" id="num-siren">
-					<tr>
-						<td>
-							<input type="text" id="num-siren-1" name="num-siren-1" placeholder="Numéro SIREN">
-							<!-- if added multiple ENTs then id/name # must be looped over for -->
-						</td>
-					</tr>
+					<tr class="hidden"><td></td></tr>
 				</table>
 				<a href="#add_siren">Ajouter un N° SIREN</a>
 				<h4>Catégorie du local :</h4>
@@ -101,14 +96,10 @@
 					</optgroup>
 				</select>
 				<h4>Consistance du local :</h4>
-				<table cellpadding="0" cellpadding="0" border="0">
+				<table cellpadding="0" cellpadding="0" border="0" id="surfaces-local">
 					<tr>
 						<th>Répartition de la surface totale (hors parkings)</th>
 						<th>Surface au m<sup>2</sup></th>
-					</tr>
-					<tr>
-						<td>P1 - Explicatif de la surface</td>
-						<td>P1 - 785 m<sup>2</sup></td>
 					</tr>
 				</table>
 				<a href="#add_surface">Ajouter une surface</a>
@@ -160,6 +151,62 @@
 	<!-- local -->
 	<script>
 		$(function(){
+
+			/**
+			 * Adding rows to SIREN N° table
+			 */
+			$('a[href="#add_siren"]').on('click', function(e){
+				e.preventDefault();
+				var max,
+					targetItem = '#num-siren',
+					limit = 5;
+
+				$(targetItem).find('tr').each(function(e){
+					max = e;
+				});
+				if(max < limit){
+					var sirenId = max+1;
+					$(this).prev(targetItem)
+							.append('<tr><td>'+
+										'<input type="text" id="num-siren'+sirenId+'" name="num-siren'+sirenId+'" placeholder="Numéro SIREN">'+
+										'<span style="font-size:30px;font-weight:bold" class="remove-row"> - </span>'+
+									'</td></tr>');
+			    }else{
+					alert('Atteint le maximum');
+				}
+			});
+
+			/**
+			 * Remove current row
+			 */
+			$('body').on('click','.remove-row', function(){
+				$(this).parents('tr').remove();
+			})
+
+			/**
+			 * Adding rows to SURFACE table
+			 */
+			$('a[href="#add_surface"]').on('click', function(e){
+				e.preventDefault();
+				var max,
+					targetItem = '#surfaces-local',
+					limit = 3;
+
+				$(targetItem).find('tr').each(function(e){
+					max = e;
+				});
+				if(max < limit){
+					var surfaceId = max+1;
+					$(this).prev(targetItem)
+							.append('<tr><td>'+
+										'P'+surfaceId+' - Explicatif de la surface'+
+										'</td><td>'+
+										'P'+surfaceId+' <input type="text" id="surface-p'+surfaceId+'" name="surface-p'+surfaceId+'" placeholder="Surface en m²"'+
+										'</td>');
+			    }else{
+					alert('Atteint le maximum');
+				}
+			})
 
 		})
 	</script>
