@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../ressources/css/style.css"> <!-- this should echo from $config[path=>css] -->
+	<title>Tester</title>
+</head>
+<body>
+	<div id="container" class="contaier">
+		<div class="row avis">
+		<h2>Avis :</h2>
+			<div class="col-md-12">
+				<h3>Information sur votre avis d'impôt 2016 taxes foncières</h3>
+				<input type="text" id="nom-ent" name="nom-ent" placeholder="Nom d'entreprise">
+				<input type="text" id="montant-a-payer" name="montant-a-payer" placeholder="Montant à payer">
+			</div>
+			<div class="col-md-12">
+				<h3>Détail du calcul des cotisations, propriétés Bâties :</h3>
+				<table cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<th></th>
+						<th>Commune</th>
+						<th>Syndicat de communes</th>
+						<th>Inter communalité</th>
+						<th>Département</th>
+						<th>Taxes spéciale (TSE)</th>
+						<th>Taxe ordures ménagères (TEOM)</th>
+						<th>Total des cotisations</th>
+					</tr>
+					<!-- <tr>
+						<td>Taux 2015 $current_year (-) 2</td>
+						<td> <input type="text" id="annee-2-com" name="annee-2-com" class="" > </td>
+						<td> <input type="text" id="annee-2-synd-com" name="annee-2-synd-com" class="" > </td>
+						<td> <input type="text" id="annee-2-inter-com" name="annee-2-inter-com" class="" > </td>
+						<td> <input type="text" id="annee-2-dep" name="annee-2-dep" class="" > </td>
+						<td> <input type="text" id="annee-2-tse" name="annee-2-tse" class="" > </td>
+						<td> <input type="text" id="annee-2-teom" name="annee-2-teom" class="" > </td>
+						<td> <input type="text" id="annee-2-total" name="annee-2-total" class="" > </td>
+					</tr> -->
+					<tr>
+						<td>Taux 2016 <!-- $current_year (-) 1 --></td>
+						<td> <input type="text" id="annee-1-com" name="annee-1-com" class="" > </td>
+						<td> <input type="text" id="annee-1-synd-com" name="annee-1-synd-com" class="" > </td>
+						<td> <input type="text" id="annee-1-inter-com" name="annee-1-inter-com" class="" > </td>
+						<td> <input type="text" id="annee-1-dep" name="annee-1-dep" class="" > </td>
+						<td> <input type="text" id="annee-1-tse" name="annee-1-tse" class="" > </td>
+						<td> <input type="text" id="annee-1-teom" name="annee-1-teom" class="" > </td>
+						<td> <input type="text" id="annee-1-total" name="annee-1-total" class="" > </td>
+					</tr>
+					<tr>
+						<td>Base</td>
+						<td> <input type="text" id="base-com" name="base-com" class="" > </td>
+						<td> <input type="text" id="base-synd-com" name="base-synd-com" class="" > </td>
+						<td> <input type="text" id="base-inter-com" name="base-inter-com" class="" > </td>
+						<td> <input type="text" id="base-dep" name="base-dep" class="" > </td>
+						<td> <input type="text" id="base-tse" name="base-tse" class="" > </td>
+						<td> <input type="text" id="base-teom" name="base-teom" class="" > </td>
+						<td> <input type="text" id="base-total" name="base-total" class="" > </td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="row cerfa-666-rev">
+		<h2>Simulation de votre déclaration :</h2>
+			<div class="col-md-12">
+				<h3>Votre département :</h3>
+				<input type="text" id="u-dep" name="u-dep" placeholder="Votre département"> 
+				<span>/</span>
+				<select name="u-dep-select" id="u-dep-select">
+					<option value="aucun">Séléctionnez votre département</option>
+					<option value="dep1">Dep 1</option>
+					<option value="dep1">Dep 2</option>
+					<option value="dep1">Dep 3</option>
+				</select>
+				<br>
+				<input type="text" id="u-com" name="u-com" placeholder="La commune"> <span>pdf</span>
+				<br>
+				<input type="text" id="u-sec" name="u-sec" placeholder="Le Secteur"> <span>pdf</span>
+			</div>
+			<div class="col-md-12">
+				<h3>Occupation du local</h3>
+				<h4>Occupant(s) :</h4>
+				<table cellpadding="0" cellpadding="0" border="0">
+					<tr>
+						<td>
+							<input type="text" id="num-siren-1" name="num-siren-1" placeholder="Numéro SIREN">
+							<!-- if added multiple ENTs then id/name # must be looped over for -->
+						</td>
+					</tr>
+					<tr class="footer">
+						<td>
+							<a href="#add_new_row">Ajouter une entreprise</a>
+						</td>
+					</tr>
+				</table>
+				<h4>Catégorie du local :</h4>
+				<select name="local-cat" id="local-cat">
+					<option value="aucun" selected></option>
+					<optgroup label="group-1">
+						<option value="item 1">Item 1</option>
+					</optgroup>
+					<optgroup label="group-2">
+						<option value="item 2">Item 2</option>
+					</optgroup>
+				</select>
+				<h4>Consistance du local :</h4>
+				<table cellpadding="0" cellpadding="0" border="0">
+					<tr>
+						<th>Répartition de la surface totale (hors parkings)</th>
+						<th>Surface au m<sup>2</sup></th>
+					</tr>
+					<tr>
+						<td>P1 - Explicatif de la surface</td>
+						<td>P1 - 785 m<sup>2</sup></td>
+					</tr>
+					<tr class="footer">
+						<td>
+							<a href="#add_new_row">Ajouter un N° SIREN</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-12 options">
+				<h4>Options : Calculs de la Simulation</h4>
+				<table cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<th></th>
+						<th>Commune</th>
+						<th>Syndicat de communes</th>
+						<th>Inter communalité</th>
+						<th>Département</th>
+						<th>Taxes spéciale (TSE)</th>
+						<th>Taxe ordures ménagères (TEOM)</th>
+					</tr>
+					<tr>
+						<td>Coefficient de neutralisation</td>
+						<td> <input type="text" id="option-neutr-com" name="option-neutr-com" class="" value="55" > </td>
+						<td> <input type="text" id="option-neutr-synd-com" name="option-neutr-synd-com" class="" value="33" > </td>
+						<td> <input type="text" id="option-neutr-inter-com" name="option-neutr-inter-com" class="" value="37" > </td>
+						<td> <input type="text" id="option-neutr-dep" name="option-neutr-dep" class="" value="45" > </td>
+						<td> <input type="text" id="option-neutr-tse" name="option-neutr-tse" class="" value="28" > </td>
+						<td> <input type="text" id="option-neutr-teom" name="option-neutr-teom" class="" value="35" > </td>
+					</tr>
+				</table>
+				<table cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td>Coefficient de localisation</td>
+						<td><input type="text" id="option-local" name="option-local" class="" value="1" ></td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-12 signature">
+				<h4>A propos de vous :</h4>
+				<input type="text" id="u-nom" name="u-nom" placeholder="Nom et prénom">
+				<input type="email" id="u-dep" name="u-dep" placeholder="E-mail">
+			</div>
+			<div class="col-md-6">
+				<button>Lancer la simulation</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
