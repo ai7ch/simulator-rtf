@@ -81,19 +81,15 @@
 			<div class="col-md-12">
 				<h3>Occupation du local :</h3>
 				<h4>Occupant(s) :</h4>
-				<table cellpadding="0" cellpadding="0" border="0">
+				<table cellpadding="0" cellpadding="0" border="0" id="num-siren">
 					<tr>
 						<td>
 							<input type="text" id="num-siren-1" name="num-siren-1" placeholder="Numéro SIREN">
 							<!-- if added multiple ENTs then id/name # must be looped over for -->
 						</td>
 					</tr>
-					<tr class="footer">
-						<td>
-							<a href="#add_new_row">Ajouter un N° SIREN</a>
-						</td>
-					</tr>
 				</table>
+				<a href="#add_siren">Ajouter un N° SIREN</a>
 				<h4>Catégorie du local :</h4>
 				<select name="local-cat" id="local-cat">
 					<option value="aucun" selected></option>
@@ -114,12 +110,8 @@
 						<td>P1 - Explicatif de la surface</td>
 						<td>P1 - 785 m<sup>2</sup></td>
 					</tr>
-					<tr class="footer">
-						<td>
-							<a href="#add_new_row">Ajouter une surface</a>
-						</td>
-					</tr>
 				</table>
+				<a href="#add_surface">Ajouter une surface</a>
 			</div>
 			<div class="col-md-12 options">
 				<h4>Options : Calculs de la Simulation</h4>
@@ -168,7 +160,7 @@
 	<!-- local -->
 	<script>
 		$(function(){
-			console.log('hey Hi!')
+
 		})
 	</script>
 </body>
