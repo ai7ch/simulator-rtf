@@ -1,3 +1,6 @@
+# Custom directories and files
+temps
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
