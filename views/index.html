@@ -198,7 +198,10 @@
 	<!-- local -->
 	<script>
 		$(function(){
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 			/**
 			 * Adding rows to PROPRIETES BÂTIES table
 			 */
@@ -206,11 +209,17 @@
 				e.preventDefault();
 				var targetItem = '#proprietes-baties',
 					id;
+<<<<<<< HEAD
 
 				$(targetItem).find('table').each(function(count){
 					id = count + 1;
 				})
 
+=======
+				$(targetItem).find('table').each(function(count){
+					id = count + 1;
+				})
+>>>>>>> master
 				$(this).prev(targetItem)
 						.append('<tr><td colspan="9">&nbsp;</td></tr><tr><td colspan="9">'+
 									'<table cellpadding="0" cellspacing="0" border="0"><tr>'+
@@ -240,14 +249,20 @@
 									'</table>'+
 								'</td></tr>');
 			});
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 			/**
 			 * Remove current row
 			 */
 			$('body').on('click','.remove-row', function(){
 				$(this).parents('tr').remove();
 			})
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 		})
 	</script>
 </body>
