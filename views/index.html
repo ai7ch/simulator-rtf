@@ -8,61 +8,71 @@
 <body>
 	<div id="container" class="contaier">
 		<div class="row avis" style="border: 1px solid gray; margin: 20px 0 50px; padding: 20px 15px; background-color: #ededed;">
-			<h2>Avis :</h2>
+			<h2>Avis d'impôt 2017 <!-- = $current_year --> taxes foncières :</h2>
 			<div class="col-md-12">
-				<h3>Information sur votre avis d'impôt 2016 taxes foncières</h3>
-				<input type="text" id="nom-ent" name="nom-ent" placeholder="Nom d'entreprise">
-				<input type="text" id="montant-a-payer" name="montant-a-payer" placeholder="Montant à payer">
+				<h3>Information de l'entreprise :</h3>
+				<label for="nom-ent">Nom d'entreprise :<input type="text" id="nom-ent" name="nom-ent"></label>
+				<label for="montant-ent">Montant à payer :<input type="text" id="montant-ent" name="montant-ent"></label>
+				<label for="dep-ent">Département :<input type="text" id="dep-ent" name="dep-ent"></label>
+				<label for="com-ent">Commune :<input type="text" id="com-ent" name="com-ent"></label>
 			</div>
 			<br>
 			<div class="col-md-12">
 				<h3>Détail du calcul des cotisations, propriétés Bâties :</h3>
-				<table cellpadding="0" cellspacing="0" border="0">
+				<table cellpadding="0" cellspacing="0" border="0" id="proprietes-baties">
 					<tr>
 						<th></th>
 						<th>Commune</th>
 						<th>Syndicat de communes</th>
 						<th>Inter communalité</th>
 						<th>Département</th>
-						<th>Taxes spéciale (TSE)</th>
-						<th>Taxe ordures ménagères (TEOM)</th>
+						<th>Taxes spéciale</th>
+						<th>Taxe ordures ménagères</th>
 						<th>Total des cotisations</th>
 					</tr>
-					<!-- <tr>
-						<td>Taux 2015 $current_year (-) 2</td>
-						<td> <input type="text" id="annee-2-com" name="annee-2-com" class="" > </td>
-						<td> <input type="text" id="annee-2-synd-com" name="annee-2-synd-com" class="" > </td>
-						<td> <input type="text" id="annee-2-inter-com" name="annee-2-inter-com" class="" > </td>
-						<td> <input type="text" id="annee-2-dep" name="annee-2-dep" class="" > </td>
-						<td> <input type="text" id="annee-2-tse" name="annee-2-tse" class="" > </td>
-						<td> <input type="text" id="annee-2-teom" name="annee-2-teom" class="" > </td>
-						<td> <input type="text" id="annee-2-total" name="annee-2-total" class="" > </td>
-					</tr> -->
 					<tr>
-						<td>Taux 2016 <!--  $current_year (-) 1 --></td>
-						<td> <input type="text" id="annee-1-com" name="annee-1-com" class="" > </td>
-						<td> <input type="text" id="annee-1-synd-com" name="annee-1-synd-com" class="" > </td>
-						<td> <input type="text" id="annee-1-inter-com" name="annee-1-inter-com" class="" > </td>
-						<td> <input type="text" id="annee-1-dep" name="annee-1-dep" class="" > </td>
-						<td> <input type="text" id="annee-1-tse" name="annee-1-tse" class="" > </td>
-						<td> <input type="text" id="annee-1-teom" name="annee-1-teom" class="" > </td>
-						<td> <input type="text" id="annee-1-total" name="annee-1-total" class="" > </td>
+						<td>Taux 2016 <!--  = $current_year (-) 1 --></td>
+						<td> <input type="text" id="taux-com-baties" name="taux-com-baties" class="" > </td>
+						<td> <input type="text" id="taux-synd-com-baties" name="taux-synd-com-baties" class="" > </td>
+						<td> <input type="text" id="taux-inter-com-baties" name="taux-inter-com-baties" class="" > </td>
+						<td> <input type="text" id="taux-dep-baties" name="taux-dep-baties" class="" > </td>
+						<td> <input type="text" id="taux-tse-baties" name="taux-tse-baties" class="" > </td>
+						<td> <input type="text" id="taux-teom-baties" name="taux-teom-baties" class="" > </td>
+						<td> <input type="text" id="taux-total-baties" name="taux-total-baties" class="" > </td>
 					</tr>
-					<tr>
-						<td>Base</td>
-						<td> <input type="text" id="base-com" name="base-com" class="" > </td>
-						<td> <input type="text" id="base-synd-com" name="base-synd-com" class="" > </td>
-						<td> <input type="text" id="base-inter-com" name="base-inter-com" class="" > </td>
-						<td> <input type="text" id="base-dep" name="base-dep" class="" > </td>
-						<td> <input type="text" id="base-tse" name="base-tse" class="" > </td>
-						<td> <input type="text" id="base-teom" name="base-teom" class="" > </td>
-						<td> <input type="text" id="base-total" name="base-total" class="" > </td>
-					</tr>
+					<tr><td colspan="8">
+						<table cellpadding="0" cellspacing="0" border="0"><tr>
+							<td>Adresse</td>
+							<td colspan="6"> <input type="text" id="adresse-baties-0" name="adresse-baties-0" class="" ></td>
+							</tr><tr>
+								<td>Base</td>
+								<td> <input type="text" id="base-com-baties-0" name="base-com-baties-0" class="" > </td>
+								<td> <input type="text" id="base-synd-com-baties-0" name="base-synd-com-baties-0" class="" > </td>
+								<td> <input type="text" id="base-inter-com-baties-0" name="base-inter-com-baties-0" class="" > </td>
+								<td> <input type="text" id="base-dep-baties-0" name="base-dep-baties-0" class="" > </td>
+								<td> <input type="text" id="base-tse-baties-0" name="base-tse-baties-0" class="" > </td>
+								<td> <input type="text" id="base-teom-baties-0" name="base-teom-baties-0" class="" > </td>
+								<td> <input type="text" id="base-total-baties-0" name="base-total-baties-0" class="" > </td>
+							</tr><tr>
+								<td>Cotisation</td>
+								<td> <input type="text" id="cotisation-com-baties-0" name="cotisation-com-baties-0" class="" > </td>
+								<td> <input type="text" id="cotisation-synd-com-baties-0" name="cotisation-synd-com-baties-0" class="" > </td>
+								<td> <input type="text" id="cotisation-inter-com-baties-0" name="cotisation-inter-com-baties-0" class="" > </td>
+								<td> <input type="text" id="cotisation-dep-baties-0" name="cotisation-dep-baties-0" class="" > </td>
+								<td> <input type="text" id="cotisation-tse-baties-0" name="cotisation-tse-baties-0" class="" > </td>
+								<td> <input type="text" id="cotisation-teom-baties-0" name="cotisation-teom-baties-0" class="" > </td>
+								<td> <input type="text" id="cotisation-total-baties-0" name="cotisation-total-baties-0" class="" > </td>
+							</tr>
+						</table>
+					</td></tr>
 				</table>
+				<a href="#ajouter_une_baties">Ajouter une proprietés bâties</a>
+				<br><br><br>
+				!!! Les bases relatives aux propriétés non bâties ne rentrent pas dans le calcul de la simulation puisque la réforme de la taxe foncière porte uniquement sur les locaux, soient les propriétés bâties.
 			</div>
 		</div> <!-- .avis -->
 		<div class="row cerfa-666-rev" style="border: 1px solid gray; margin: 20px 0 50px; padding: 20px 15px; background-color: #ededed;">
-			<h2>CERFA 6660-Rev :</h2>
+			<h2>CERFA 6660-REV :</h2>
 			<div class="col-md-12">
 				<h3>Votre département :</h3>
 				<input type="text" id="u-dep" name="u-dep" placeholder="Votre département"> 
@@ -102,7 +112,6 @@
 						<th>Surface au m<sup>2</sup></th>
 					</tr>
 				</table>
-				<a href="#add_surface">Ajouter une surface</a>
 			</div>
 			<div class="col-md-12 options">
 				<h4>Options : Calculs de la Simulation</h4>
@@ -132,6 +141,12 @@
 						<td><input type="text" id="option-local" name="option-local" class="" value="1" ></td>
 					</tr>
 				</table>
+				<br>
+				<span>
+					!!! La date estimée de la diffusion des coefficients de neutralisation est prévue pour fin Juin 2017, en attendant, la simulation s'effectue en fonction du coefficient moyen sur la France égal à 0,3.
+					<br>On vous informe également que le coefficient de neutralisation est prévu d'être propre à chaque collectivité et à chaque impôt (taxe foncière, CFE, ordures ménagères,…).
+					<br>Concernant les taux de Commune, syndicats de communes, inter communalité, département, taxes spéciales, taxe ordures ménagères … etc, on prend par défaut les taux N-1
+				</span>
 			</div>
 			<div class="col-md-12 signature">
 				<h4>A propos de vous :</h4>
@@ -153,27 +168,45 @@
 		$(function(){
 
 			/**
-			 * Adding rows to SIREN N° table
+			 * Adding rows to PROPRIETES BÂTIES table
 			 */
-			$('a[href="#add_siren"]').on('click', function(e){
+			$('a[href="#ajouter_une_baties"]').on('click', function(e){
 				e.preventDefault();
-				var max,
-					targetItem = '#num-siren',
-					limit = 5;
+				var targetItem = '#proprietes-baties',
+					id;
 
-				$(targetItem).find('tr').each(function(e){
-					max = e;
-				});
-				if(max < limit){
-					var sirenId = max+1;
-					$(this).prev(targetItem)
-							.append('<tr><td>'+
-										'<input type="text" id="num-siren'+sirenId+'" name="num-siren'+sirenId+'" placeholder="Numéro SIREN">'+
-										'<span style="font-size:30px;font-weight:bold" class="remove-row"> - </span>'+
-									'</td></tr>');
-			    }else{
-					alert('Atteint le maximum');
-				}
+				$(targetItem).find('table').each(function(count){
+					id = count + 1;
+				})
+
+				console.log('id : '+id);
+
+				$(this).prev(targetItem)
+						.append('<tr><td colspan="8">&nbsp;</td></tr><tr><td colspan="8">'+
+									'<table cellpadding="0" cellspacing="0" border="0"><tr>'+
+										'<td>Adresse</td>'+
+										'<td colspan="6"> <input type="text" id="adresse-baties-'+id+'" name="adresse-baties-'+id+'" class="" ></td>'+
+										'</tr><tr>'+
+											'<td>Base</td>'+
+											'<td> <input type="text" id="base-com-baties-'+id+'" name="base-com-baties-'+id+'" class="" > </td>'+
+											'<td> <input type="text" id="base-synd-com-baties-'+id+'" name="base-synd-com-baties-'+id+'" class="" > </td>'+
+											'<td> <input type="text" id="base-inter-com-baties-'+id+'" name="base-inter-com-baties-'+id+'" class="" > </td>'+
+											'<td> <input type="text" id="base-dep-baties-'+id+'" name="base-dep-baties-'+id+'" class="" > </td>'+
+											'<td> <input type="text" id="base-tse-baties-'+id+'" name="base-tse-baties-'+id+'" class="" > </td>'+
+											'<td> <input type="text" id="base-teom-baties-'+id+'" name="base-teom-baties-'+id+'" class="" > </td>'+
+											'<td> <input type="text" id="base-total-baties-'+id+'" name="base-total-baties-'+id+'" class="" > </td>'+
+										'</tr><tr>'+
+											'<td>Cotisation</td>'+
+											'<td> <input type="text" id="cotisation-com-baties-'+id+'" name="cotisation-com-baties-'+id+'" class="" > </td>'+
+											'<td> <input type="text" id="cotisation-synd-com-baties-'+id+'" name="cotisation-synd-com-baties-'+id+'" class="" > </td>'+
+											'<td> <input type="text" id="cotisation-inter-com-baties-'+id+'" name="cotisation-inter-com-baties-'+id+'" class="" > </td>'+
+											'<td> <input type="text" id="cotisation-dep-baties-'+id+'" name="cotisation-dep-baties-'+id+'" class="" > </td>'+
+											'<td> <input type="text" id="cotisation-tse-baties-'+id+'" name="cotisation-tse-baties-'+id+'" class="" > </td>'+
+											'<td> <input type="text" id="cotisation-teom-baties-'+id+'" name="cotisation-teom-baties-'+id+'" class="" > </td>'+
+											'<td> <input type="text" id="cotisation-total-baties-'+id+'" name="cotisation-total-baties-'+id+'" class="" > </td>'+
+										'</tr>'+
+									'</table>'+
+								'</td></tr>');
 			});
 
 			/**
@@ -187,14 +220,20 @@
 			 * Adding rows to SURFACE table
 			 */
 			$('a[href="#add_surface"]').on('click', function(e){
+				//self explanatory
 				e.preventDefault();
+
+				//setup variables
 				var max,
 					targetItem = '#surfaces-local',
 					limit = 3;
 
+				//go through the table and get the last index number
 				$(targetItem).find('tr').each(function(e){
 					max = e;
 				});
+
+				//check the limitation and then print append the element
 				if(max < limit){
 					var surfaceId = max+1;
 					$(this).prev(targetItem)
@@ -203,7 +242,7 @@
 										'</td><td>'+
 										'P'+surfaceId+' <input type="text" id="surface-p'+surfaceId+'" name="surface-p'+surfaceId+'" placeholder="Surface en m²"'+
 										'</td>');
-			    }else{
+			    }else{ //alert to the user
 					alert('Atteint le maximum');
 				}
 			})
