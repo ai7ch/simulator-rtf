@@ -70,24 +70,24 @@
 						</table>
 					</td></tr>
 				</table>
-				<a href="#ajouter_une_baties">Ajouter une proprietés bâties</a>
+				<a href="#ajouter_une_propriete">Ajouter une proprietés bâties</a>
 				<br><br><br>
 				!!! Les bases relatives aux propriétés non bâties ne rentrent pas dans le calcul de la simulation puisque la réforme de la taxe foncière porte uniquement sur les locaux, soient les propriétés bâties.
 			</div>
 		</div> <!-- .avis -->
-		<div class="row cerfa-666-rev" style="border: 1px solid gray; margin: 20px 0 50px; padding: 20px 15px; background-color: #ededed;">
+		<div class="row cerfa-6660-rev" style="border: 1px solid gray; margin: 20px 0 50px; padding: 20px 15px; background-color: #ededed;">
 			<h2>CERFA 6660-REV :</h2>
 			<div class="col-md-12">
 				<h3>Votre département ? / Ou... ? :</h3>
-				<label for="departement-u"> Département :
-					<input type="text" id="departement-u" name="departement-u" placeholder="Département"> 
+				<label for="departement-ent-cerfa"> Département :
+					<input type="text" id="departement-ent-cerfa" name="departement-ent-cerfa" placeholder="Département"> 
 				</label>
-				<label for="commune-u"> Commune :
-					<input type="text" id="commune-u" name="commune-u" placeholder="La commune">
+				<label for="commune-ent-cerfa"> Commune :
+					<input type="text" id="commune-ent-cerfa" name="commune-ent-cerfa" placeholder="La commune">
 				</label>
 				<br>
-				<label for="secteur-u"> Secteur :
-					<select id="secteur-u" name="secteur-u">
+				<label for="secteur-ent-cerfa"> Secteur :
+					<select id="secteur-ent-cerfa" name="secteur-ent-cerfa">
 						<option value="0">-- Choix d'un secteur --</option>
 						<option value="1">Secteur 1</option>
 						<option value="2">Secteur 2</option>
@@ -99,23 +99,35 @@
 					</select> <span>PDF</span>
 				</label>
 				<br>
-				<label for="section-u"> Section :
-					<input type="text" name="section-u" id="section-u" placeholder="Section">
+				<label for="section-ent-cerfa"> Section :
+					<input type="text" name="section-ent-cerfa" id="section-ent-cerfa" placeholder="Section">
 				</label>
-				<label for="invariant-u"> Invariant :
-					<input type="text" name="invariant-u" id="invariant-u" placeholder="Invariant">
+				<label for="invariant-ent-cerfa"> Invariant :
+					<input type="text" name="invariant-ent-cerfa" id="invariant-ent-cerfa" placeholder="Invariant">
 				</label>
 			</div>
 			<div class="col-md-12">
 				<h3>Occupation du local :</h3>
 				<h4>Catégorie du local :</h4>
 					<select name="local-cat" id="local-cat">
-						<option value="aucun" selected></option>
-						<optgroup label="group-1">
-							<option value="item 1">Item 1</option>
+						<option value="">-- Choix d'un groupe --</option>
+						<optgroup label="Magasins et lieux de vente"><option value="mag1">MAG 1 - boutiques et magasins sur rue</option>
+							<option value="mag2">MAG 2 - commerces sans accès direct sur la rue</option>
+							<option value="mag3">MAG 3 - magasins appartenant à un ensemble commercial</option>
+							<option value="mag4">MAG 4 - magasins de grande surface (surface principale comprise entre 400 et 2 500 m²)</option>
+							<option value="mag5">MAG 5 - magasins de très grande surface (surface principale supérieure ou égale à 2 500 m²)</option>
+							<option value="mag6">MAG 6 - stations-service, stations de lavage et assimilables</option>
+							<option value="mag7">MAG 7 - marchés</option>
 						</optgroup>
-						<optgroup label="group-2">
-							<option value="item 2">Item 2</option>
+						<optgroup label="Bureaux et locaux divers assimilables">
+							<option value="bur1">BUR 1 - locaux à usage de bureaux d'agencement ancien</option>
+							<option value="bur2">BUR 2 - locaux à usage de bureaux d'agencement récent</option>
+							<option value="bur3">BUR 3 - locaux assimilables à des bureaux mais présentant des aménagements spécifiques</option>
+						</optgroup>
+						<optgroup label="Lieux de dépôt ou de stockage et parcs de stationnement">
+							<option value="dep1">DEP 1 - lieux de dépôt à ciel ouvert et terrains à usage commercial ou industriel</option>
+							<option value="dep2">DEP 2 - lieux de dépôt couverts</option>
+							<option value="dep3">DEP 3 - parcs de stationnement à</option>
 						</optgroup>
 					</select>
 				<h4>Consistance du local :</h4>
@@ -177,13 +189,13 @@
 				<span>
 					!!! La date estimée de la diffusion des coefficients de neutralisation est prévue pour fin Juin 2017, en attendant, la simulation s'effectue en fonction du coefficient moyen sur la France égal à 0,3.
 					<br>On vous informe également que le coefficient de neutralisation est prévu d'être propre à chaque collectivité et à chaque impôt (taxe foncière, CFE, ordures ménagères,…).
-					<br>Concernant les taux de Commune, syndicats de communes, inter communalité, département, taxes spéciales, taxe ordures ménagères … etc, on prend par défaut les taux N-1
+					<br>Concernant les taux de Commune, syndicats de communes, inter communalité, département, taxes spéciales, taxe ordures ménagères … etc, on prend par défaut les taux N-1.
 				</span>
 			</div>
 			<div class="col-md-12 signature">
 				<h4>A propos de vous :</h4>
-				<input type="text" id="u-nom" name="u-nom" placeholder="Nom et prénom">
-				<input type="email" id="u-dep" name="u-dep" placeholder="E-mail">
+				<input type="text" id="nom-u" name="nom-u" placeholder="Nom et prénom">
+				<input type="email" id="email-u" name="email-u" placeholder="E-mail">
 			</div>
 			<div class="col-md-6">
 				<button>Lancer la simulation</button>
@@ -201,10 +213,11 @@
 			/**
 			 * Adding rows to PROPRIETES BÂTIES table
 			 */
-			$('a[href="#ajouter_une_baties"]').on('click', function(e){
+			$('a[href="#ajouter_une_propriete"]').on('click', function(e){
 				e.preventDefault();
 				var targetItem = '#proprietes-baties',
 					id;
+					/*return the # of properties to use it as an ID for the fields*/
 				$(targetItem).find('table').each(function(count){
 					id = count + 1;
 				})
@@ -237,12 +250,38 @@
 									'</table>'+
 								'</td></tr>');
 			});
+
 			/**
 			 * Remove current row
 			 */
 			$('body').on('click','.remove-row', function(){
 				$(this).parents('tr').remove();
 			})
+
+			/**
+			* Auto-complete related data fields 
+			*/
+
+			var depEnt = $('#departement-ent'),
+				comEnt = $('#commune-ent');
+
+			depEnt.on('blur',function(e){
+				if($(this).val() != ''){
+					$('#departement-ent-cerfa').val($(this).val())
+												.attr('disabled','disabled');
+				}
+			})
+			comEnt.on('blur',function(e){
+				if($(this).val() != ''){
+					$('#commune-ent-cerfa').val($(this).val())
+														.attr('disabled','disabled');
+				}
+			})
+
+			/**
+			* 
+			*/
+
 		})
 	</script>
 </body>
