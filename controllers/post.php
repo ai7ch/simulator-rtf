@@ -32,16 +32,16 @@
 	echo "<pre>";
 
 	$fields = $_GET;
-	$pattern = [
+	$patterns = [
 		'taux' => '^taux',
-		'proprietes_baties' => '[-]\d',
+		'proprietes' => '[-]\d',
 		'entreprise-avis' => '[-]ent$',
 		'entreprise-cerfa' => '[-]ent[-]cerfa',
 		'utilisateur' => '[-]u',
 		'surfaces' => '[-](p|pk)\d',
 	];
 		
-	$les_taux = groupFields($pattern['surfaces'], $fields);
+	$les_taux = groupFields($patterns['proprietes'], $fields);
 	print_r($les_taux);
 
 	echo '<br>';
