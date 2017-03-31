@@ -44,7 +44,7 @@
 							<td> <input type="text" id="taux-total-baties" name="taux-total-baties" class="" > </td>
 						</tr> <!--Taux-->
 						<tr><td colspan="9">
-							<table cellpadding="0" cellspacing="0" border="0"><tr>
+							<table cellpadding="0" cellspacing="0" border="0" name="propriete-0"><tr>
 								<td>Adresse</td>
 								<td colspan="7"> <input type="text" id="adresse-baties-0" name="adresse-baties-0" class="" ></td>
 								</tr><tr>
