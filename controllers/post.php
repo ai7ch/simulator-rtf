@@ -2,15 +2,50 @@
 /**
 * Handles the data submitted by the form
 */
-	$fields_data = $_GET;
-	echo "<pre>";
-		print_r($fields_data);
-		foreach ($fields_data as $field_title => $field_value) {
-			//$matched = preg_grep("/^base/", explode("\n", $field_title));
-			//echo $field_title . '<br>';
+	/**
+	* This method is used to filter FORM input fields
+	* @param $pattern, regexp the keys to isolate
+	* @param $input, array list to fetch in the keys
+	* @return 
+	*	# an array of field keys and their values;
+	*	# or Null if not
+	*/
+	function groupFields($pattern, array $input){
+		//assign a Null value to avoid (error => Undefined value), when a pattern not found
+		$selected_fields = null;
+		//get the pattern keys
+		$group_fields = preg_grep('/'.$pattern.'/', array_keys($input));
+		//go through pattern keys to match the @param $input keys 
+		//if exist @return array or null if not
+		foreach ($input as $field_name => $field_value) {
+			foreach ($group_fields as $field) {
+				if($field_name === $field){
+					$selected_fields[$field_name] = $field_value;
+				}
+			}
 		}
-		$matched = preg_grep("/^base/", explode("\n", $field), $fields_data);
-		print_r($matched);
-		echo "<br>";
-		echo count($_GET);
-	echo "</pre>";
+		//self explanatory
+		return $selected_fields;
+	}
+
+
+	echo "<pre>";
+
+	$fields = $_GET;
+	$pattern = [
+		'taux' => '^taux',
+		'proprietes_baties' => '[-]\d',
+		'entreprise-avis' => '[-]ent$',
+		'entreprise-cerfa' => '[-]ent[-]cerfa',
+		'utilisateur' => '[-]u',
+		'surfaces' => '[-](p|pk)\d',
+	];
+		
+	$les_taux = groupFields($pattern['surfaces'], $fields);
+	print_r($les_taux);
+
+	echo '<br>';
+	print_r($fields);
+
+
+echo "</pre>";
