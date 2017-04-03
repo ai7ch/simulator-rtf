@@ -9,7 +9,7 @@
 	<div id="container" class="contaier">
 		<form method="POST" action="../controllers/post.php">
 			<div class="row avis" style="border: 1px solid gray; margin: 20px 0 50px; padding: 20px 15px; background-color: #ededed;">
-				<h2>Avis d'impôt 2017 <!-- = $current_year --> taxes foncières :</h2>
+				<h2>Avis d'impôt 2016 <!-- = $current_year --> taxes foncières :</h2>
 				<div class="col-md-12">
 					<h3>Information de l'entreprise :</h3>
 					<label for="nom-ent">Nom d'entreprise : <input type="text" id="nom-ent" name="nom-ent"></label>
@@ -81,10 +81,12 @@
 				<div class="col-md-12">
 					<h3>Votre département ? / Ou... ? :</h3>
 					<label for="departement-ent-cerfa"> Département :
-						<input type="text" id="departement-ent-cerfa" name="departement-ent-cerfa" placeholder="Département"> 
+						<input type="text" id="departement-ent-cerfa" placeholder="Département"> 
+						<input type="hidden" name="departement-ent-cerfa">
 					</label>
 					<label for="commune-ent-cerfa"> Commune :
-						<input type="text" id="commune-ent-cerfa" name="commune-ent-cerfa" placeholder="La commune">
+						<input type="text" id="commune-ent-cerfa" placeholder="La commune">
+						<input type="hidden" name="commune-ent-cerfa">
 					</label>
 					<br>
 					<label for="secteur-ent-cerfa"> Secteur :
@@ -269,14 +271,14 @@
 
 			depEnt.on('blur',function(e){
 				if($(this).val() != ''){
-					$('#departement-ent-cerfa').val($(this).val())
-												.attr('disabled','disabled');
+					$('#departement-ent-cerfa, [name="departement-ent-cerfa"]').val($(this).val());
+					$('#departement-ent-cerfa').attr('disabled','disabled');
 				}
 			})
 			comEnt.on('blur',function(e){
 				if($(this).val() != ''){
-					$('#commune-ent-cerfa').val($(this).val())
-														.attr('disabled','disabled');
+					$('#commune-ent-cerfa, [name="commune-ent-cerfa"]').val($(this).val());
+					$('#commune-ent-cerfa').attr('disabled','disabled');
 				}
 			})
 
