@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div id="container" class="contaier">
-		<form method="POST" action="../controllers/post.php">
+		<form method="" action="../controllers/post.php">
 			<div class="row avis" style="border: 1px solid gray; margin: 20px 0 50px; padding: 20px 15px; background-color: #ededed;">
 				<h2>Avis d'impôt 2016 <!-- = $current_year --> taxes foncières :</h2>
 				<div class="col-md-12">
@@ -46,27 +46,27 @@
 						<tr><td colspan="9">
 							<table cellpadding="0" cellspacing="0" border="0"><tr>
 								<td>Adresse</td>
-								<td colspan="7"> <input type="text" id="adresse-baties-0" name="propriete-0['adresse']" class="" ></td>
+								<td colspan="7"> <input type="text" id="adresse-baties-0" name="propriete-0[adresse]" class="" ></td>
 								</tr><tr>
 									<td>Base</td>
-									<td> <input type="text" id="base-com-baties-0" name="propriete-0['base']['commune']" class="" > </td>
-									<td> <input type="text" id="base-synd-com-baties-0" name="propriete-0['base']['syndicat-commune']" class="" > </td>
-									<td> <input type="text" id="base-inter-com-baties-0" name="propriete-0['base']['syndicat-inter-commune']" class="" > </td>
-									<td> <input type="text" id="base-dep-baties-0" name="propriete-0['base']['departement']" class="" > </td>
-									<td> <input type="text" id="base-tse-baties-0" name="propriete-0['base']['tse']" class="" > </td>
-									<td> <input type="text" id="base-teom-baties-0" name="propriete-0['base']['teom']" class="" > </td>
-									<td> <input type="text" id="base-gemapi-baties-0" name="propriete-0['base']['gemapi']" class="" > </td>
-									<td> <input type="text" id="base-total-baties-0" name="propriete-0['base']['total']" class="" > </td>
+									<td> <input type="text" id="base-com-baties-0" name="propriete-0[base][commune]" class="" > </td>
+									<td> <input type="text" id="base-synd-com-baties-0" name="propriete-0[base][syndicat-commune]" class="" > </td>
+									<td> <input type="text" id="base-inter-com-baties-0" name="propriete-0[base][syndicat-inter-commune]" class="" > </td>
+									<td> <input type="text" id="base-dep-baties-0" name="propriete-0[base][departement]" class="" > </td>
+									<td> <input type="text" id="base-tse-baties-0" name="propriete-0[base][tse]" class="" > </td>
+									<td> <input type="text" id="base-teom-baties-0" name="propriete-0[base][teom]" class="" > </td>
+									<td> <input type="text" id="base-gemapi-baties-0" name="propriete-0[base][gemapi]" class="" > </td>
+									<td> <input type="text" id="base-total-baties-0" name="propriete-0[base][total]" class="" > </td>
 								</tr><tr><!--Base-->
 									<td>Cotisation</td>
-									<td> <input type="text" id="cotisation-com-baties-0" name="propriete-0['cotisation']['commune']" class="" > </td>
-									<td> <input type="text" id="cotisation-synd-com-baties-0" name="propriete-0['cotisation']['syndicat-commune']" class="" > </td>
-									<td> <input type="text" id="cotisation-inter-com-baties-0" name="propriete-0['cotisation']['syndicat-inter-commune']" class="" > </td>
-									<td> <input type="text" id="cotisation-dep-baties-0" name="propriete-0['cotisation']['departement']" class="" > </td>
-									<td> <input type="text" id="cotisation-tse-baties-0" name="propriete-0['cotisation']['tse']" class="" > </td>
-									<td> <input type="text" id="cotisation-teom-baties-0" name="propriete-0['cotisation']['teom']" class="" > </td>
-									<td> <input type="text" id="cotisation-gemapi-baties-0" name="propriete-0['cotisation']['gemapi']" class="" > </td>
-									<td> <input type="text" id="cotisation-total-baties-0" name="propriete-0['cotisation']['total']" class="" > </td>
+									<td> <input type="text" id="cotisation-com-baties-0" name="propriete-0[cotisation][commune]" class="" > </td>
+									<td> <input type="text" id="cotisation-synd-com-baties-0" name="propriete-0[cotisation][syndicat-commune]" class="" > </td>
+									<td> <input type="text" id="cotisation-inter-com-baties-0" name="propriete-0[cotisation][syndicat-inter-commune]" class="" > </td>
+									<td> <input type="text" id="cotisation-dep-baties-0" name="propriete-0[cotisation][departement]" class="" > </td>
+									<td> <input type="text" id="cotisation-tse-baties-0" name="propriete-0[cotisation][tse]" class="" > </td>
+									<td> <input type="text" id="cotisation-teom-baties-0" name="propriete-0[cotisation][teom]" class="" > </td>
+									<td> <input type="text" id="cotisation-gemapi-baties-0" name="propriete-0[cotisation][gemapi]" class="" > </td>
+									<td> <input type="text" id="cotisation-total-baties-0" name="propriete-0[cotisation][total]" class="" > </td>
 								</tr> <!--Cotisation-->
 							</table>
 						</td></tr>
@@ -229,27 +229,27 @@
 						.append('<tr><td colspan="9">&nbsp;</td></tr><tr><td colspan="9">'+
 									'<table cellpadding="0" cellspacing="0" border="0"><tr>'+
 										'<td>Adresse</td>'+
-										'<td colspan="7"> <input type="text" id="adresse-baties-'+id+'" name="propriete-'+id+'[\'adresse\']" class="" ></td>'+
+										'<td colspan="7"> <input type="text" id="adresse-baties-'+id+'" name="propriete-'+id+'[adresse]" class="" ></td>'+
 										'</tr><tr>'+
 											'<td>Base</td>'+
-											'<td> <input type="text" id="base-com-baties-'+id+'" name="propriete-'+id+'[\'base\'][\'commune\']" class="" > </td>'+
-											'<td> <input type="text" id="base-synd-com-baties-'+id+'" name="propriete-'+id+'[\'base\'][\'syndicat-commune\']" class="" > </td>'+
-											'<td> <input type="text" id="base-inter-com-baties-'+id+'" name="propriete-'+id+'[\'base\'][\'syndicat-inter-commune\']" class="" > </td>'+
-											'<td> <input type="text" id="base-dep-baties-'+id+'" name="propriete-'+id+'[\'base\'][\'departement\']" class="" > </td>'+
-											'<td> <input type="text" id="base-tse-baties-'+id+'" name="propriete-'+id+'[\'base\'][\'tse\']" class="" > </td>'+
-											'<td> <input type="text" id="base-teom-baties-'+id+'" name="propriete-'+id+'[\'base\'][\'teom\']" class="" > </td>'+
-											'<td> <input type="text" id="base-gemapi-baties-'+id+'" name="propriete-'+id+'[\'base\'][\'gemapi\']" class="" > </td>'+
-											'<td> <input type="text" id="base-total-baties-'+id+'" name="propriete-'+id+'[\'base\'][\'total\']" class="" > </td>'+
+											'<td> <input type="text" id="base-com-baties-'+id+'" name="propriete-'+id+'[base][commune]" class="" > </td>'+
+											'<td> <input type="text" id="base-synd-com-baties-'+id+'" name="propriete-'+id+'[base][syndicat-commune]" class="" > </td>'+
+											'<td> <input type="text" id="base-inter-com-baties-'+id+'" name="propriete-'+id+'[base][syndicat-inter-commune]" class="" > </td>'+
+											'<td> <input type="text" id="base-dep-baties-'+id+'" name="propriete-'+id+'[base][departement]" class="" > </td>'+
+											'<td> <input type="text" id="base-tse-baties-'+id+'" name="propriete-'+id+'[base][tse]" class="" > </td>'+
+											'<td> <input type="text" id="base-teom-baties-'+id+'" name="propriete-'+id+'[base][teom]" class="" > </td>'+
+											'<td> <input type="text" id="base-gemapi-baties-'+id+'" name="propriete-'+id+'[base][gemapi]" class="" > </td>'+
+											'<td> <input type="text" id="base-total-baties-'+id+'" name="propriete-'+id+'[base][total]" class="" > </td>'+
 										'</tr><tr>'+
 											'<td>Cotisation</td>'+
-											'<td> <input type="text" id="cotisation-com-baties-'+id+'" name="propriete-'+id+'[\'cotisation\'][\'commune\']" class="" > </td>'+
-											'<td> <input type="text" id="cotisation-synd-com-baties-'+id+'" name="propriete-'+id+'[\'cotisation\'][\'syndicat-commune\']" class="" > </td>'+
-											'<td> <input type="text" id="cotisation-inter-com-baties-'+id+'" name="propriete-'+id+'[\'cotisation\'][\'syndicat-inter-commune\']" class="" > </td>'+
-											'<td> <input type="text" id="cotisation-dep-baties-'+id+'" name="propriete-'+id+'[\'cotisation\'][\'departement\']" class="" > </td>'+
-											'<td> <input type="text" id="cotisation-tse-baties-'+id+'" name="propriete-'+id+'[\'cotisation\'][\'tse\']" class="" > </td>'+
-											'<td> <input type="text" id="cotisation-teom-baties-'+id+'" name="propriete-'+id+'[\'cotisation\'][\'teom\']" class="" > </td>'+
-											'<td> <input type="text" id="cotisation-gemapi-baties-'+id+'" name="propriete-'+id+'[\'cotisation\'][\'gemapi\']" class="" > </td>'+
-											'<td> <input type="text" id="cotisation-total-baties-'+id+'" name="propriete-'+id+'[\'cotisation\'][\'total\']" class="" > </td>'+
+											'<td> <input type="text" id="cotisation-com-baties-'+id+'" name="propriete-'+id+'[cotisation][commune]" class="" > </td>'+
+											'<td> <input type="text" id="cotisation-synd-com-baties-'+id+'" name="propriete-'+id+'[cotisation][syndicat-commune]" class="" > </td>'+
+											'<td> <input type="text" id="cotisation-inter-com-baties-'+id+'" name="propriete-'+id+'[cotisation][syndicat-inter-commune]" class="" > </td>'+
+											'<td> <input type="text" id="cotisation-dep-baties-'+id+'" name="propriete-'+id+'[cotisation][departement]" class="" > </td>'+
+											'<td> <input type="text" id="cotisation-tse-baties-'+id+'" name="propriete-'+id+'[cotisation][tse]" class="" > </td>'+
+											'<td> <input type="text" id="cotisation-teom-baties-'+id+'" name="propriete-'+id+'[cotisation][teom]" class="" > </td>'+
+											'<td> <input type="text" id="cotisation-gemapi-baties-'+id+'" name="propriete-'+id+'[cotisation][gemapi]" class="" > </td>'+
+											'<td> <input type="text" id="cotisation-total-baties-'+id+'" name="propriete-'+id+'[cotisation][total]" class="" > </td>'+
 										'</tr>'+
 									'</table>'+
 								'</td></tr>');
