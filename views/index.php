@@ -185,7 +185,7 @@
 					<table cellpadding="0" cellspacing="0" border="0">
 						<tr>
 							<td>Coefficient de localisation</td>
-							<td><input type="text" id="option-local" name="option-local" class="" value="1" ></td>
+							<td><input type="text" id="coef_de_localisation" name="coef_de_localisation" class="" value="1" ></td>
 						</tr>
 					</table> <!--options : calcul simulation-->
 					<br>
