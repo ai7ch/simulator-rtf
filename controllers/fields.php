@@ -86,17 +86,26 @@
 		/**
 		 * @return Valeur locative revisee brute
 		 */
-		function get_vl_revisee_brute(float $surface_ponderee, float $tarif=255, float $coef_de_localisation = 1){
-
+		function get_vl_revisee_brute(float $surface_ponderee, float $tarif=255.0, float $coef_de_localisation){
 			return $surface_ponderee * $tarif * $coef_de_localisation;
 		}
 		
 		/**
 		 * 
 		 */
-		function get_vl_revisee_neutralisee(int $vl_revisee_brute){
-			$coef_de_neutralisation = 0.3;
-			return $vl_revisee_brute * $coef_de_neutralisation;
+		function get_vl_revisee_neutralisee(int $vl_revisee_brute, array $coef_de_neutralisation){
+			$valeur_calcule_de_base = 0.3;
+			$total_vl_reviser_neutralisee = [];
+
+			foreach ($coef_de_neutralisation as $neut_column => $neut_value) {
+				if($neut_value != $valeur_calcule_de_base){
+					$total_vl_reviser_neutralisee[$neut_column] = $vl_revisee_brute * $neut_value;
+				}else{
+					$total_vl_reviser_neutralisee[$neut_column] = $vl_revisee_brute * $valeur_calcule_de_base;
+				}
+			}
+
+			return $total_vl_reviser_neutralisee;
 		}
 
 		/**
