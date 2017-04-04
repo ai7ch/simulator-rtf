@@ -1,54 +1,138 @@
 <?php 
+	require_once 'fields.php';
+	require_once 'functions.php';
 /**
 * Handles the data submitted by the form
 */
-	/**
-	* This method is used to filter FORM input fields
-	* @param $pattern, regexp the keys to isolate
-	* @param $input, array list to fetch in the keys
-	* @return 
-	*	# an array of field keys and their values;
-	*	# or Null if not
-	*/
-	function groupFields($pattern, array $input){
-		//assign a Null value to avoid (error => Undefined value), when a pattern not found
-		$selected_fields = null;
-		//get the pattern keys
-		$group_fields = preg_grep('/'.$pattern.'/', array_keys($input));
-		//go through pattern keys to match the @param $input keys 
-		//if exist @return array or null if not
-		foreach ($input as $field_name => $field_value) {
-			foreach ($group_fields as $field) {
-				if($field_name === $field){
-					$selected_fields[$field_name] = $field_value;
-				}
-			}
-		}
-		//self explanatory
-		return $selected_fields;
-	}
+
+	$field = new Fields();
 
 
-	echo "<pre>";
-	if(isset($_POST['submit'])){
-		echo "yes POSTED";
-	}
-	echo "<hr>";
-	$fields = $_POST;
-	$patterns = [
-		'taux' => '^taux',
-		'proprietes' => '[-]\d',
-		'entreprise-avis' => '[-]ent$',
-		'entreprise-cerfa' => '[-]ent[-]cerfa',
-		'utilisateur' => '[-]u',
-		'surfaces' => '[-](p|pk)\d',
-	];
+	
+
+	//if(isset($_POST['submit'])):
+		$posted_fields = $_GET;
+		$patterns = [
+			'taux' => '^taux',
+			'proprietes' => '[-]\d',
+			'entreprise-avis' => '[-]ent$',
+			'entreprise-cerfa' => '[-]ent[-]cerfa',
+			'utilisateur' => '[-]u',
+			'surfaces' => '(p|pk)\d',
+		];
+
+		/*Recuperer la coef de localisation en cas ou est different de value { 1 }*/
+		$coef_de_localisation = !empty($posted_fields['coef_de_localisation']) ? $posted_fields['coef_de_localisation'] : '1.0';
+
+		/*Recuperer la coef de neutralisation*/
+		$coef_de_neutralisation = $posted_fields['coef_de_neutralisation'];
 		
-	$proprietes = groupFields($patterns['proprietes'], $fields);
-	print_r($proprietes);
+		/*Recuperer propriete*/
+		$proprietes = $field->group_fields($patterns['proprietes'], $posted_fields);
+		foreach ($proprietes as $value) {
+			$base_cotisation = $value['base']['commune'];
+			$valeur_locative = $field->get_vl((int)$base_cotisation);
+		}
 
-	echo "<br><hr><br>";
-	print_r($fields);
+		/*Recuperer la list de(s) surface(s)*/
+		$get_surfaces = $posted_fields['surfaces'];
+		
 
 
-echo "</pre>";
+	?>
+
+	<table cellspacing="0" cellpadding="10" border="1" width="350">
+		<tr>
+			<th colspan="3" align="center">
+				Valeur locative 1970
+			</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Bâti</td>
+			<td>Total</td>
+		</tr>
+		<tr>
+			<td>Base de cotisation <?=get_current_year()-1 ?></td>
+			<td><?=$base_cotisation; ?></td>
+			<td><?=$base_cotisation; ?></td>
+		</tr>
+		<tr>
+			<td>Valeurs Locatives <?=get_current_year()-1 ?></td>
+			<td><?=$valeur_locative ?></td>
+			<td><?=$valeur_locative ?></td>
+		</tr>
+	</table>
+
+	<br><br>
+
+	<table cellspacing="0" cellpadding="10" border="1" width="350">
+		<tr>
+			<th colspan="2">Valeur locative révisée brute</th>
+		</tr>
+		<tr>
+			<td>Surfaces pondérèes</td>
+			<td><?php 
+					$surface_ponderee = $field->get_surfaces_ponderees($get_surfaces);
+					echo $surface_ponderee;
+				?></td>
+		</tr>
+		<tr>
+			<td>Tarif de la grille</td>
+			<td><?=$tarif="132.30"?></td>
+		</tr>
+		<tr>
+			<td>Coefficient de localisation</td>
+			<td><?=$coef_de_localisation ?></td>
+		</tr>
+		<tr>
+			<td>VL révisée brute</td>
+			<td><?php 
+					$vl_revisee_brute = $field->get_vl_revisee_brute($surface_ponderee, $tarif, $coef_de_localisation);
+					$vl_revisee_brute_rounded = round($vl_revisee_brute);
+					$vl_revisee_brute_rounded = str_replace('00','',number_format($vl_revisee_brute_rounded,2,' ',' '));
+					echo $vl_revisee_brute_rounded;
+				?>
+			</td>
+		</tr>
+	</table>
+
+	<br><br>
+	
+	<table cellspacing="0" cellpadding="10" border="1" width="1224">
+		<tr>
+			<th colspan="7">Valeur locative révisée neutralisée</th>
+		</tr>
+		<tr>
+			<td></td>
+			<?php foreach ($coef_de_neutralisation as $column_titles => $column_values): ?>
+				<td>
+					<?=ucwords($column_titles)?>
+				</td>
+			<?php endforeach ?>
+		</tr>
+		<tr>
+			<td>Coefficient de neutralisation</td>
+			<?php foreach ($coef_de_neutralisation as $column_values): ?>
+				<td><?=$column_values ?></td>
+			<?php endforeach ?>
+		</tr>
+		<tr>
+			<td>VL Révisée neutraliée</td>
+			<?php 
+				$vl_revisee_neutralisee = $field->get_vl_revisee_neutralisee($vl_revisee_brute,$coef_de_neutralisation);
+				foreach ($vl_revisee_neutralisee as $column_values): ?>
+				<td><?= str_replace('00','',number_format(round($column_values),2,'',' ')) ?></td>
+			<?php endforeach ?>
+		</tr>
+	</table>
+
+	<?php
+	echo "<pre>";
+
+	echo '<br>';
+
+	echo '<br>';
+	print_r($posted_fields);
+	//endif;
+	echo "</pre>";
