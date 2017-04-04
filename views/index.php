@@ -149,11 +149,11 @@
 										<td>Pk2</td>
 									</tr>
 									<tr>
-										<td><input type="text" id="surface-p1" name="surface-p1" placeholder="Surface en m²"></td>
-										<td><input type="text" id="surface-p2" name="surface-p2" placeholder="Surface en m²"></td>
-										<td><input type="text" id="surface-p3" name="surface-p3" placeholder="Surface en m²"></td>
-										<td><input type="text" id="surface-pk1" name="surface-pk1" placeholder="Surface en m²"></td>
-										<td><input type="text" id="surface-pk2" name="surface-pk2" placeholder="Surface en m²"></td>
+										<td><input type="text" id="surface-p1" name="surfaces[p1]" placeholder="Surface en m²"></td>
+										<td><input type="text" id="surface-p2" name="surfaces[p2]" placeholder="Surface en m²"></td>
+										<td><input type="text" id="surface-p3" name="surfaces[p3]" placeholder="Surface en m²"></td>
+										<td><input type="text" id="surface-pk1" name="surfaces[pk1]" placeholder="Surface en m²"></td>
+										<td><input type="text" id="surface-pk2" name="surfaces[pk2]" placeholder="Surface en m²"></td>
 									</tr>
 								</table>
 							</td>
