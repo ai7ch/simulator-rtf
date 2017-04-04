@@ -86,10 +86,7 @@
 		/**
 		 * @return Valeur locative revisee brute
 		 */
-		function get_vl_revisee_brute(int $surface_ponderee, int $tarif=255){
-			$coef_de_localisation = 1;
-			//get $tarif value, returned from tarif table
-			$tarif = 255;
+		function get_vl_revisee_brute(float $surface_ponderee, float $tarif=255, float $coef_de_localisation = 1){
 
 			return $surface_ponderee * $tarif * $coef_de_localisation;
 		}
