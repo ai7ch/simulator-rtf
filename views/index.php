@@ -174,18 +174,18 @@
 						</tr>
 						<tr>
 							<td>Coefficient de neutralisation</td>
-							<td> <input type="text" id="option-neutr-com" name="option-neutr-com" class="" value="55" > </td>
-							<td> <input type="text" id="option-neutr-synd-com" name="option-neutr-synd-com" class="" value="33" > </td>
-							<td> <input type="text" id="option-neutr-inter-com" name="option-neutr-inter-com" class="" value="37" > </td>
-							<td> <input type="text" id="option-neutr-dep" name="option-neutr-dep" class="" value="45" > </td>
-							<td> <input type="text" id="option-neutr-tse" name="option-neutr-tse" class="" value="28" > </td>
-							<td> <input type="text" id="option-neutr-teom" name="option-neutr-teom" class="" value="35" > </td>
+							<td> <input type="text" id="option-neutr-com" name="coef_de_neutralisation[commune]" class="" value="0.3" > </td>
+							<td> <input type="text" id="option-neutr-synd-com" name="coef_de_neutralisation[syndicat_de_communes]" class="" value="0.3" > </td>
+							<td> <input type="text" id="option-neutr-inter-com" name="coef_de_neutralisation[inter-communalite]" class="" value="0.3" > </td>
+							<td> <input type="text" id="option-neutr-dep" name="coef_de_neutralisation[departement]" class="" value="0.3" > </td>
+							<td> <input type="text" id="option-neutr-tse" name="coef_de_neutralisation[tse]" class="" value="0.3" > </td>
+							<td> <input type="text" id="option-neutr-teom" name="coef_de_neutralisation[teom]" class="" value="0.3" > </td>
 						</tr>
 					</table>
 					<table cellpadding="0" cellspacing="0" border="0">
 						<tr>
 							<td>Coefficient de localisation</td>
-							<td><input type="text" id="coef_de_localisation" name="coef_de_localisation" class="" value="1" ></td>
+							<td><input type="text" id="coef_de_localisation" name="coef_de_localisation" class="" placeholder="1.0"></td>
 						</tr>
 					</table> <!--options : calcul simulation-->
 					<br>
