@@ -117,6 +117,12 @@
 			return $vl_planchonee;
 		}
 
+		/**
+		 * 
+		 */
+		function get_base_cotisation(int $vl_planchonee){
+			return $vl_planchonee / 2;
+		}
 
 	}
 
