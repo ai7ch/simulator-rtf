@@ -93,7 +93,7 @@
 		/**
 		 * 
 		 */
-		function get_vl_revisee_neutralisee(int $vl_revisee_brute, array $coef_de_neutralisation){
+		function get_vl_revisee_neutralisee(float $vl_revisee_brute, array $coef_de_neutralisation){
 			$valeur_calcule_de_base = 0.3;
 			$total_vl_reviser_neutralisee = [];
 
@@ -111,18 +111,28 @@
 		/**
 		 * 
 		 */
-		function get_vl_planchonee(int $vl_revisee_neutralisee, int $total_vl){
+		function get_vl_planchonee(float $vl_revisee_neutralisee, float $total_vl){
 			$planchonnement = ($total_vl - $vl_revisee_neutralisee) / 2;
 			$vl_planchonee = $vl_revisee_neutralisee + $planchonnement;
 			return $vl_planchonee;
 		}
 
 		/**
-		 * 
+		 * calcule des bases de cotisation de l'annee courante 
 		 */
-		function get_base_cotisation(int $vl_planchonee){
+		function get_base_cotisation(float $vl_planchonee){
 			return $vl_planchonee / 2;
 		}
+
+
+		/**
+		* calcule des cotisations de l'annee courante en system actuel (sans frais de gestion)
+		* /!\ INTENSION : c'est calculer avec la base de cotisation de l'annee de l'avis (current_year - 1)
+		*/
+		function get_cotisation_annee(float $base_cotisation_avis, float $le_taux){
+			return $base_cotisation_avis * $le_taux;
+		}
+
 
 	}
 
