@@ -41,7 +41,7 @@
 							<td> <input type="text" id="taux-tse" name="taux[tse]" class="" > </td>
 							<td> <input type="text" id="taux-teom" name="taux[teom]" class="" > </td>
 							<td> <input type="text" id="taux-gemapi" name="taux[gemapi]" class="" > </td>
-							<td> <input type="text" id="taux-total" name="taux[total]" class="" > </td>
+							<td></td>
 						</tr> <!--Taux-->
 						<tr><td colspan="9">
 							<table cellpadding="0" cellspacing="0" border="0"><tr>
