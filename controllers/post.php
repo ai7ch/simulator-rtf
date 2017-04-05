@@ -126,6 +126,30 @@
 			<?php endforeach ?>
 		</tr>
 	</table>
+	
+	<br><br>
+
+	<table cellspacing="0" cellpadding="10" border="1" width="1224">
+		<tr>
+			<th colspan="7">Valeur locative planchonée</th>
+		</tr>
+		<tr>
+			<td></td>
+			<?php foreach ($coef_de_neutralisation as $column_titles => $column_values): ?>
+				<td>
+					<?=ucwords($column_titles)?>
+				</td>
+			<?php endforeach ?>
+		</tr>
+		<tr>
+			<td>VL neutraliée planchonée</td>
+			<?php 
+				foreach ($vl_revisee_neutralisee as $column_values): 
+					$vl_planchonee = $field->get_vl_planchonee($column_values,$valeur_locative);?>
+				<td><?= str_replace('00','',number_format(round($vl_planchonee),2,'',' ')) ?></td>
+			<?php endforeach ?>
+		</tr>
+	</table>
 
 	<?php
 	echo "<pre>";
