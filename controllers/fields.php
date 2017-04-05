@@ -120,17 +120,25 @@
 		/**
 		 * calcule des bases de cotisation de l'annee courante 
 		 */
-		function get_base_cotisation(float $vl_planchonee){
+		function get_base_cotisation_annee(float $vl_planchonee){
 			return $vl_planchonee / 2;
 		}
 
 
 		/**
-		* calcule des cotisations de l'annee courante en system actuel (sans frais de gestion)
+		* calcule les cotisations de l'annee courante en system actuel (sans frais de gestion)
 		* /!\ INTENSION : c'est calculer avec la base de cotisation de l'annee de l'avis (current_year - 1)
 		*/
 		function get_cotisation_annee(float $base_cotisation_avis, float $le_taux){
 			return $base_cotisation_avis * $le_taux;
+		}
+
+		/**
+		* calcule les cotisations REVISÉÉ de l'annee courante en system actuel (sans frais de gestion)
+		* /!\ INTENSION : c'est calculer avec la base de cotisation de l'annee courante (current_year)
+		*/
+		function get_cotisation_annee_revise(float $base_cotisation_annee, float $le_taux){
+			return $base_cotisation_annee * $le_taux;
 		}
 
 
