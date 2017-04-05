@@ -35,15 +35,21 @@
 		/******************************
 		***        Variables        ***
 		******************************/
-		/*Enregistre les valeur locative planchonee pour la base de cotisation de l'annee courante (current_year) */
+		/*les champs des taux qui ne sont pas prise dans la calcules*/
+		$champs_a_exclure = [
+			'gemapi'=>0,
+		];
+		/*store les valeurs locative planchonee POUR la base de cotisation de l'annee courante (current_year) */
 		$vl_planchonee_base_cotisation = [];
 		/*Base de cotisation de l'avis, renseigné par l'utilisateur*/
 		$base_cotisation_avis = "";
-		/*Récupération des noms des colones*/
+		/*store les noms des colones*/
 		$noms_colones = array_keys($coef_de_neutralisation);
+		/*store les valeurs de cotisation de l'annee courante (current_year) */
+		$base_cotisation_annee = [];
 
 		/**
-		* Calcule de valeur locative pour l'annee courante
+		* Calcule de valeur locative POUR l'annee courante
 		*/
 		foreach ($proprietes as $value) {
 			$base_cotisation_avis = $value['base']['commune']; //base_cotisation shouldn't be provided this way
@@ -74,7 +80,7 @@
 			<td><?=$valeur_locative ?></td>
 			<td><?=$valeur_locative ?></td>
 		</tr>
-	</table>
+	</table> <!-- Valeur locative 1970 -->
 
 	<br><br>
 
@@ -107,17 +113,20 @@
 				?>
 			</td>
 		</tr>
-	</table>
+	</table> <!-- Valeur locative révisée brute -->
 
 	<br><br>
 	
 	<table cellspacing="0" cellpadding="10" border="1" width="1224">
 		<tr>
-			<th colspan="7">Valeur locative révisée neutralisée</th>
+			<th colspan="9">Valeur locative révisée neutralisée</th>
 		</tr>
 		<tr>
 			<td></td>
-			<?php foreach ($noms_colones as $noms): ?>
+			<?php foreach ($les_taux as $noms => $valeur):
+					//enlever les teaux qui ne sont pas calculer dans la cotisation
+					// ex: les taux de GEMAPI dans ce simulateur
+					if(array_key_exists($noms, $champs_a_exclure)){continue;}?>
 				<td>
 					<?=ucwords($noms)?>
 				</td>
@@ -137,17 +146,20 @@
 				<td><?= number_format(round($column_values),2,',',' ') ?></td>
 			<?php endforeach ?>
 		</tr>
-	</table>
+	</table> <!-- Valeur locative révisée neutralisée -->
 	
 	<br><br>
 
 	<table cellspacing="0" cellpadding="10" border="1" width="1224">
 		<tr>
-			<th colspan="7">Valeur locative planchonée</th>
+			<th colspan="9">Valeur locative planchonée</th>
 		</tr>
 		<tr>
 			<td></td>
-			<?php foreach ($noms_colones as $noms): ?>
+			<?php foreach ($les_taux as $noms => $valeur): 
+					//enlever les teaux qui ne sont pas calculer dans la cotisation
+					// ex: les taux de GEMAPI dans ce simulateur
+					if(array_key_exists($noms, $champs_a_exclure)){continue;}?>
 				<td>
 					<?=ucwords($noms)?>
 				</td>
@@ -162,7 +174,7 @@
 				<td><?= number_format(round($vl_planchonee),2,',',' ') ?></td>
 			<?php endforeach ?>
 		</tr>
-	</table>
+	</table> <!-- Valeur locative planchonée -->
 	
 	<br><br>
 
@@ -172,7 +184,10 @@
 		</tr>
 		<tr>
 			<td></td>
-			<?php foreach ($noms_colones as $noms): ?>
+			<?php foreach ($les_taux as $noms => $valeur): 
+					//enlever les teaux qui ne sont pas calculer dans la cotisation
+					// ex: les taux de GEMAPI dans ce simulateur
+					if(array_key_exists($noms, $champs_a_exclure)){continue;}?>
 				<td>
 					<?=ucwords($noms)?>
 				</td>
@@ -181,30 +196,35 @@
 		<tr>
 			<td>Bâti</td>
 			<?php 
-				foreach ($vl_planchonee_base_cotisation as $valeur): 
-					$base_cotisation_annee = $field->get_base_cotisation($valeur);?>
-				<td><?= str_replace('','',number_format(round($base_cotisation_annee),2,',',' ')) ?></td>
+				foreach ($vl_planchonee_base_cotisation as $noms => $valeur): 
+					$cotisation_annee = $field->get_base_cotisation_annee($valeur);
+					$base_cotisation_annee[$noms] = $cotisation_annee;
+				?>
+				<td><?= number_format(round($cotisation_annee),2,',',' ') ?></td>
 			<?php endforeach ?>
 		</tr>
 		<tr>
 			<td>Total</td>
 			<?php 
-				foreach ($vl_planchonee_base_cotisation as $valeur): 
-					$base_cotisation_annee = $field->get_base_cotisation($valeur);?>
-				<td><?= str_replace('','',number_format(round($base_cotisation_annee),2,'',' ')) ?></td>
+				foreach ($vl_planchonee_base_cotisation as $noms => $valeur): 
+					$cotisation_annee = $field->get_base_cotisation_annee($valeur);?>
+				<td><?= number_format(round($cotisation_annee),2,',',' ') ?></td>
 			<?php endforeach ?>
 		</tr>
-	</table>
+	</table> <!-- Base de cotisation -->
 	
 	<br><br>
 
 	<table cellspacing="0" cellpadding="10" border="1" width="1224">
 		<tr>
-			<th colspan="9">Taux d'imposation</th>
+			<th colspan="7">Taux d'imposation</th>
 		</tr>
 		<tr>
 			<td></td>
-			<?php foreach ($les_taux as $noms => $column_values): ?>
+			<?php foreach ($les_taux as $noms => $taux):
+					//enlever les teaux qui ne sont pas calculer dans la cotisation
+					// ex: les taux de GEMAPI dans ce simulateur
+					if(array_key_exists($noms, $champs_a_exclure)){continue;} ?>
 				<td>
 					<?=ucwords($noms)?>
 				</td>
@@ -213,28 +233,37 @@
 		<tr>
 			<td>Bâti</td>
 			<?php 
-				foreach ($les_taux as $valeur):?>
-				<td><?= !empty($valeur) ? $valeur : 0 ?></td>
+				foreach ($les_taux as  $noms => $taux):
+					//enlever les teaux qui ne sont pas calculer dans la cotisation
+					// ex: les taux de GEMAPI dans ce simulateur
+					if(array_key_exists($noms, $champs_a_exclure)){continue;} ?>
+				<td><?= !empty($taux) ? $taux : 0 ?></td>
 			<?php endforeach ?>
 		</tr>
 		<tr>
 			<td>Total</td>
 			<?php 
-				foreach ($les_taux as $valeur):?>
-				<td><?= !empty($valeur) ? $valeur : 0 ?></td>
+				foreach ($les_taux as $noms => $taux):
+					//enlever les teaux qui ne sont pas calculer dans la cotisation
+					// ex: les taux de GEMAPI dans ce simulateur
+					if(array_key_exists($noms, $champs_a_exclure)){continue;} ?>
+				<td><?= !empty($taux) ? $taux : 0 ?></td>
 			<?php endforeach ?>
 		</tr>
-	</table>
+	</table> <!-- Taux d'imposition -->
 	
 	<br><br>
 
 	<table cellspacing="0" cellpadding="10" border="1" width="1224">
 		<tr>
-			<th colspan="10">Cotisation <?=get_current_year()?> en system actuel (sans frais de gestion)</th>
+			<th colspan="8">Cotisation <?=get_current_year()?> en system actuel (sans frais de gestion)</th>
 		</tr>
 		<tr>
 			<td></td>
-			<?php foreach ($les_taux as $noms => $column_values): ?>
+			<?php foreach ($les_taux as $noms => $taux):
+					//enlever les teaux qui ne sont pas calculer dans la cotisation
+					// ex: les taux de GEMAPI dans ce simulateur
+					if(array_key_exists($noms, $champs_a_exclure)){continue;}?>
 				<td>
 					<?=ucwords($noms)?>
 				</td>
@@ -246,7 +275,8 @@
 		<tr>
 			<td>Bâti</td>
 			<?php 
-				foreach ($les_taux as $taux):
+				foreach ($les_taux as $noms => $taux):
+					if(array_key_exists($noms, $champs_a_exclure)){continue;}
 					$cotisation_annee_sans_frais = $field->get_cotisation_annee((float)$base_cotisation_avis, (float)$taux);?>
 				<td><?= number_format(round($cotisation_annee_sans_frais),2,',',' ') ?></td>
 			<?php endforeach ?>
@@ -257,7 +287,8 @@
 		<tr>
 			<td>Total</td>
 			<?php 
-				foreach ($les_taux as $taux):
+				foreach ($les_taux as $noms => $taux):
+					if(array_key_exists($noms, $champs_a_exclure)){continue;}
 					$cotisation_annee_sans_frais = $field->get_cotisation_annee((float)$base_cotisation_avis, (float)$taux);?>
 				<td><?= number_format(round($cotisation_annee_sans_frais),2,',',' ') ?></td>
 			<?php endforeach ?>
@@ -265,11 +296,59 @@
 				{Total des tout tatal cotisation 2017}
 			</td>
 		</tr>
-	</table>
+	</table> <!-- Cotisation current_year en system actuel (sans frais de gestion) -->
 	
 	<br><br>
 
-	
+	<table cellspacing="0" cellpadding="10" border="1" width="1224">
+		<tr>
+			<th colspan="8">Cotisation <?=get_current_year()?> reviséé (sans frais de gestion)</th>
+		</tr>
+		<tr>
+			<td></td>
+			<?php foreach ($les_taux as $noms => $taux):
+					//enlever les teaux qui ne sont pas calculer dans la cotisation
+					// ex: les taux de GEMAPI dans ce simulateur
+					if(array_key_exists($noms, $champs_a_exclure)){continue;}?>
+				<td>
+					<?=ucwords($noms)?>
+				</td>
+			<?php endforeach ?>
+			<td>
+				Total
+			</td>
+		</tr>
+		<tr>
+			<td>Bâti</td>
+			<?php 
+				foreach ($les_taux as $noms => $taux):
+					//enlever les teaux qui ne sont pas calculer dans la cotisation
+					// ex: les taux de GEMAPI dans ce simulateur
+					if(array_key_exists($noms, $champs_a_exclure)){continue;}
+					$cotisation = $base_cotisation_annee[$noms];
+					$cotisation_annee_revise = $field->get_cotisation_annee_revise((float)$cotisation, (float)$taux);?>
+				<td><?= number_format(round($cotisation_annee_revise),2,',',' ') ?></td>
+			<?php endforeach ?>
+			<td>
+				{Total des cotisation 2017}
+			</td>
+		</tr>
+		<tr>
+			<td>Total</td>
+			<?php 
+				foreach ($les_taux as $noms => $taux):
+					//enlever les teaux qui ne sont pas calculer dans la cotisation
+					// ex: les taux de GEMAPI dans ce simulateur
+					if(array_key_exists($noms, $champs_a_exclure)){continue;}
+					$cotisation = $base_cotisation_annee[$noms];
+					$cotisation_annee_revise = $field->get_cotisation_annee_revise((float)$cotisation, (float)$taux);?>
+				<td><?= number_format(round($cotisation_annee_revise),2,',',' ') ?></td>
+			<?php endforeach ?>
+			<td>
+				{Total des tout tatal cotisation 2017}
+			</td>
+		</tr>
+	</table> <!-- Cotisation current_year revisee (sans frais de gestion) -->
 	
 	<?php
 	echo "<pre>";
@@ -277,6 +356,6 @@
 	echo '<br>';
 
 	echo '<br>';
-	print_r($les_taux);
+	print_r($base_cotisation_annee);
 	//endif;
 	echo "</pre>";
