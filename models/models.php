@@ -4,7 +4,7 @@
 	/**
 	* 
 	*/
-	class Modules
+	class Models
 	{
 		
 		function __construct($connect)
