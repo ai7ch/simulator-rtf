@@ -25,31 +25,30 @@
 		/******************************
 		*** Recuperation des champs ***
 		******************************/
-		/*Assignier un valeur par*/
 		$coef_de_localisation = !empty($posted_fields['coef_de_localisation']) ? $posted_fields['coef_de_localisation'] : '1.0';
 		$coef_de_neutralisation = $posted_fields['coef_de_neutralisation'];
 		$les_taux = $posted_fields['taux'];
 		$surfaces = $posted_fields['surfaces'];
-		$proprietes = $posted_fields['proprietes']; //need to be optimized this, it isn't the best way!
+		$proprietes = $posted_fields['proprietes']; //this need to be optimized, it isn't the best way
 
 		/******************************
 		***        Variables        ***
 		******************************/
-		/*les champs des taux qui ne sont pas prise dans la calcules*/
+		/*les champs qui ne sont pas prise dans la calcules*/
 		$champs_a_exclure = [
 			'gemapi'=>0,
 		];
-		/*store les valeurs locative planchonee POUR la base de cotisation de l'annee courante (current_year) */
+		/*enregistre les valeurs locative planchonee POUR la base de cotisation de l'annee courante (current_year) */
 		$vl_planchonee_base_cotisation = [];
-		/*Base de cotisation de l'avis, renseigné par l'utilisateur*/
+		/*enregistre la base de cotisation de l'avis, renseigné par l'utilisateur (current_year - 1)*/
 		$base_cotisation_avis = "";
-		/*store les noms des colones*/
-		$noms_colones = array_keys($coef_de_neutralisation);
-		/*store les valeurs de cotisation de l'annee courante (current_year) */
+		/*enregistre la valeur locative, de l'annee de l'avis (current_year - 1)*/
+		$valeur_locative = "";
+		/*enregistre les valeurs de cotisation de l'annee courante (current_year) */
 		$base_cotisation_annee = [];
 
 		/**
-		* Calcule de valeur locative POUR l'annee courante
+		* Calcules le valeur locative POUR l'annee courante (current_year -1)
 		*/
 		foreach ($proprietes as $value) {
 			$base_cotisation_avis = $value['base']['commune']; //base_cotisation shouldn't be provided this way
@@ -71,12 +70,12 @@
 			<td>Total</td>
 		</tr>
 		<tr>
-			<td>Base de cotisation <?=get_current_year()-1 ?></td>
+			<td>Base de cotisation <?=get_current_year() - 1 ?></td>
 			<td><?=!empty($base_cotisation_avis) ? $base_cotisation_avis : 0 ; ?></td>
 			<td><?=!empty($base_cotisation_avis) ? $base_cotisation_avis : 0 ; ?></td>
 		</tr>
 		<tr>
-			<td>Valeurs Locatives <?=get_current_year()-1 ?></td>
+			<td>Valeurs Locatives <?=get_current_year() - 1 ?></td>
 			<td><?=$valeur_locative ?></td>
 			<td><?=$valeur_locative ?></td>
 		</tr>
@@ -356,6 +355,6 @@
 	echo '<br>';
 
 	echo '<br>';
-	print_r($base_cotisation_annee);
+	print_r($posted_fields);
 	//endif;
 	echo "</pre>";

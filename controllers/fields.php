@@ -7,6 +7,11 @@
 	class fields
 	{
 		/**
+		*
+		* CETTE METHOD EST CREE POUR DES CAS TRES PRECIS
+		* ELLE PEUT ETRE SUPPRIMER A LA FINALISATION DU PROJET
+		* OU DANS LE CAS CONTRAINE ^_-
+		*
 		* This method is used to filter FORM input fields
 		* @param $pattern, regexp the keys to isolate
 		* @param $input, array list to fetch in the keys
@@ -33,31 +38,36 @@
 		}
 
 		/**
+		 * Calcule la valeur locative de l'annee de l'avis (current_year - 1)
+		 * sur la base de cotisation de l'annee de l'avis (current_year -1)
 		 * @param $base_cotisation
+		 * @return valeur locative
 		 */
 		function get_vl(int $base_cotisation){
 			return $base_cotisation * 2;
 		}
 
 		/**
-		 * 
+		 * Calcule la surface ponderees par rapport au surface renseigné par l'utilisateur
+		 * @param $list_des_surfaces
+		 * @return $total_de_la_surface_ponderees
 		 */
-		function get_surfaces_ponderees(array $get_surfaces){
+		function get_surfaces_ponderees(array $list_surfaces){
 			$surfaces = array();
 			$total_surface ="";
 
 			/**
-			 * Isolate selected surface from the others
+			 * Recuperer les champs qui contienne des valeur (! null / ! empty)
 			 */
-			foreach ($get_surfaces as $key => $value) {
+			foreach ($list_surfaces as $key => $value) {
 				if(!empty($value)){
 					$surfaces[$key] = $value;
 				}
 			}
 
 			/**
-			 * Loop through selected surface_id and calculate with their corresponding coef
-			 * and then perfom addition of all selected surface
+			 * Calcule chaque champ a sa coef de ponderation
+			 * et puis faire l'addition pour avoir la surface ponderees
 			 */
 			foreach ($surfaces as $surface_id => $surface_value) {
 				switch ($surface_id) {
@@ -84,6 +94,10 @@
 
 
 		/**
+		 * Calcule la valeur locative revisee brute
+		 * @param $surface_ponderee
+		 * @param $tarif //ICI LE TARIF EST STATIC => plus tard il faudrait le recuperer de la base
+		 * @param $coef_de_localisation
 		 * @return Valeur locative revisee brute
 		 */
 		function get_vl_revisee_brute(float $surface_ponderee, float $tarif=255.0, float $coef_de_localisation){
@@ -91,25 +105,32 @@
 		}
 		
 		/**
-		 * 
+		 * Calcule la valeur revisee neutralisee
+		 * @param $valeur_locative_brute
+		 * @param $coef_de_neutralisation 
+		 * 		  //Si l'utilisateur ne renseigne pas, un valeur static est fourni. Qui est de 0.3
+		 * @return valeur revisee neutralisee
 		 */
 		function get_vl_revisee_neutralisee(float $vl_revisee_brute, array $coef_de_neutralisation){
 			$valeur_calcule_de_base = 0.3;
-			$total_vl_reviser_neutralisee = [];
+			$total_vl_revisee_neutralisee = [];
 
-			foreach ($coef_de_neutralisation as $neut_column => $neut_value) {
-				if($neut_value != $valeur_calcule_de_base){
-					$total_vl_reviser_neutralisee[$neut_column] = $vl_revisee_brute * $neut_value;
+			foreach ($coef_de_neutralisation as $neut_colonne => $neut_valeur) {
+				if($neut_valeur != $valeur_calcule_de_base){
+					$total_vl_revisee_neutralisee[$neut_colonne] = $vl_revisee_brute * $neut_valeur;
 				}else{
-					$total_vl_reviser_neutralisee[$neut_column] = $vl_revisee_brute * $valeur_calcule_de_base;
+					$total_vl_revisee_neutralisee[$neut_colonne] = $vl_revisee_brute * $valeur_calcule_de_base;
 				}
 			}
 
-			return $total_vl_reviser_neutralisee;
+			return $total_vl_revisee_neutralisee;
 		}
 
 		/**
-		 * 
+		 * Calcule le valeur locative planchonnee
+		 * @param $valeur_locative_revisee_neutralisee
+		 * @param $valeur_locative_annee_avis
+		 * @return valeur locative planchonee
 		 */
 		function get_vl_planchonee(float $vl_revisee_neutralisee, float $total_vl){
 			$planchonnement = ($total_vl - $vl_revisee_neutralisee) / 2;
@@ -118,7 +139,9 @@
 		}
 
 		/**
-		 * calcule des bases de cotisation de l'annee courante 
+		 * Calcule la base de cotisation de l'annee courante (current_year)
+		 * @param $valeur_locative_planchonee
+		 * @return valeur locative planchonee
 		 */
 		function get_base_cotisation_annee(float $vl_planchonee){
 			return $vl_planchonee / 2;
@@ -128,6 +151,9 @@
 		/**
 		* calcule les cotisations de l'annee courante en system actuel (sans frais de gestion)
 		* /!\ INTENSION : c'est calculer avec la base de cotisation de l'annee de l'avis (current_year - 1)
+		* @param $base_de_cotisation de l'annee de l'avis ( current_year - 1 )
+		* @param $les_taux de l'annee de l'avis
+		* @return la cotisation de l'annee courante 
 		*/
 		function get_cotisation_annee(float $base_cotisation_avis, float $le_taux){
 			return $base_cotisation_avis * $le_taux;
@@ -136,6 +162,9 @@
 		/**
 		* calcule les cotisations REVISÉÉ de l'annee courante en system actuel (sans frais de gestion)
 		* /!\ INTENSION : c'est calculer avec la base de cotisation de l'annee courante (current_year)
+		* @param $base_de_cotisation de l'annee courante (current_year)
+		* @param $les_taux de l'annee de l'avis
+		* @return la cotisation de l'annee courante 
 		*/
 		function get_cotisation_annee_revise(float $base_cotisation_annee, float $le_taux){
 			return $base_cotisation_annee * $le_taux;
