@@ -10,8 +10,8 @@
 
 	
 
-	//if(isset($_POST['submit'])):
-		$posted_fields = $_GET;
+	if(isset($_POST['submit'])):
+		$posted_fields = $_POST;
 		$patterns = [
 			'taux' => '^taux',
 			//'proprietes' => '[-]\d',
@@ -356,5 +356,5 @@
 
 	echo '<br>';
 	print_r($posted_fields);
-	//endif;
+	endif;
 	echo "</pre>";

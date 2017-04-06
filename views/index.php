@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div id="container" class="contaier">
-		<form method="" action="../controllers/post.php">
+		<form method="post" action="../controllers/post.php">
 			<div class="row avis" style="border: 1px solid gray; margin: 20px 0 50px; padding: 20px 15px; background-color: #ededed;">
 				<h2>Avis d'impôt 2016 <!-- = $current_year --> taxes foncières :</h2>
 				<div class="col-md-12">
